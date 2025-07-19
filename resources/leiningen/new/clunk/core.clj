@@ -12,13 +12,13 @@
 
 ;; Configure the game
 (def {{name}}-game
-  (qp/game {:title "{{name}}"
-            :size [800 600]
-            :init-scenes-fn init-scenes
-            :current-scene :menu
-            :assets {:image {:captain-spritesheet "resources/img/captain.png"}}}))
+  (c/game {:title "{{name}}"
+           :size [800 600]
+           :init-scenes-fn init-scenes
+           :current-scene :menu
+           :assets {:image {:captain-spritesheet "resources/img/captain.png"}}}))
 
 (defn -main
   "Run the game"
   [& args]
-  (qp/start! {{name}}-game))
+  (c/start! {{name}}-game))

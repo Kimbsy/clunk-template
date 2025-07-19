@@ -20,4 +20,4 @@
                   ["src/{{sanitized}}/scenes/menu.clj" (render "menu.clj" data)]
                   ["src/{{sanitized}}/scenes/level_01.clj" (render "level_01.clj" data)]
                   ["src/{{sanitized}}/sprites/button.clj" (render "button.clj" data)]
-                  ["resources/img/captain.png" "captain.png"])))
+                  ["resources/img/captain.png" (render "captain.png" data)])))

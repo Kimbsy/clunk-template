@@ -1,11 +1,11 @@
 (ns {{name}}.scenes.menu
-    (:require [clunk.core :as c]
-              [clunk.input :as input]
-              [clunk.palette :as p]
-              [clunk.scene :as scene]
-              [clunk.sprite :as sprite]
-              [clunk.util :as u]
-              [{{name}}.sprites.button :as button]))
+  (:require [clunk.core :as c]
+            [clunk.input :as input]
+            [clunk.palette :as p]
+            [clunk.scene :as scene]
+            [clunk.sprite :as sprite]
+            [clunk.util :as u]
+            [{{name}}.sprites.button :as button]))
 
 (def green (p/hex->rgba "#60D394"))
 
@@ -18,8 +18,9 @@
 (defn sprites
   "The initial list of sprites for this scene"
   [{:keys [window] :as state}]
-  [(-> (button/button-sprite [(* w 1/2) (* h 1/2)] "Play")
-       (input/add-on-click on-click-play))])
+  (let [[w h] (u/window-size window)]
+    [(-> (button/button-sprite [(* w 1/2) (* h 1/2)] "Play")
+         (input/add-on-click on-click-play))]))
 
 (defn draw-menu!
   "Called each frame, draws the current scene to the screen"
