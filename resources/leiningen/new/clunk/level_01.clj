@@ -8,26 +8,27 @@
 
 (defn sprites
   "The initial list of sprites for this scene"
-  []
-  [(sprite/animated-sprite
-    :captain ; sprite-group, used for group collision detection
-    pos
-    [240 360] ; <- width and height of each animation frame
-    :captain-spritesheet ; <- spritesheet image asset key
-    [1680 1440] ; <- width and height of the whole spritesheet image
-    :animations {:none {:frames 1
-                        :y-offset 0
-                        :frame-delay 100}
-                 :idle {:frames 4
-                        :y-offset 1
-                        :frame-delay 15}
-                 :run  {:frames 4
-                        :y-offset 2
-                        :frame-delay 8}
-                 :jump {:frames 7
-                        :y-offset 3
-                        :frame-delay 8}}
-    :current-animation current-animation)])
+  [{:keys [window] :as state}]
+  (let [[w h] (u/window-size window)]
+    [(sprite/animated-sprite
+      :captain ; sprite-group, used for group collision detection
+      [(* w 1/2) (* h 1/2)]
+      [240 360] ; <- width and height of each animation frame
+      :captain-spritesheet ; <- spritesheet image asset key
+      [1680 1440] ; <- width and height of the whole spritesheet image
+      :animations {:none {:frames 1
+                          :y-offset 0
+                          :frame-delay 100}
+                   :idle {:frames 4
+                          :y-offset 1
+                          :frame-delay 15}
+                   :run  {:frames 4
+                          :y-offset 2
+                          :frame-delay 8}
+                   :jump {:frames 7
+                          :y-offset 3
+                          :frame-delay 8}}
+      :current-animation current-animation)]))
 
 (defn draw-level-01!
   "Called each frame, draws the current scene to the screen"
@@ -44,6 +45,6 @@
 (defn init
   "Initialise this scene"
   [state]
-  {:sprites (sprites)
+  {:sprites (sprites state)
    :draw-fn draw-level-01!
    :update-fn update-level-01})
