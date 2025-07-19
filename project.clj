@@ -1,4 +1,4 @@
-(defproject com.kimbsy/lein-template.clunk "0.1.2"
+(defproject com.kimbsy/lein-template.clunk "0.1.4"
   :description "A Leiningen template for the clunk game engine"
   :url "https://github.com/Kimbsy/clunk-template"
   :license {:name "MIT License"
