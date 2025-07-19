@@ -9,16 +9,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Set up JDK 21
-      uses: actions/setup-java@v3
-      with:
-        java-version: '21'
-        distribution: 'temurin'
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
 
-    - name: Cache Maven local repo
+      - name: Install Leiningen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y leiningen
+
+      - name: Cache Maven local repo
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
