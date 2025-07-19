@@ -13,7 +13,7 @@
   "Transition from this scene to `:level-01` with a ~500ms frame
   fade-out"
   [state e]
-  (scene/transition state :level-01 :transition-length 500))
+  (scene/transition state :level-01 :transition-length 40))
 
 (defn sprites
   "The initial list of sprites for this scene"

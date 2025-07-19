@@ -11,9 +11,12 @@
   "The initial list of sprites for this scene"
   [{:keys [window] :as state}]
   (let [[w h] (u/window-size window)]
-    [(sprite/animated-sprite
+    [(sprite/text-sprite :instructions
+                         [(* w 0.5) (* h 0.2)]
+                         "Press SPACE to change animation")
+     (sprite/animated-sprite
       :captain ; sprite-group, used for group collision detection
-      [(* w 1/2) (* h 1/2)]
+      [(* w 0.5) (* h 0.6)]
       [240 360] ; <- width and height of each animation frame
       :captain-spritesheet ; <- spritesheet image asset key
       [1680 1440] ; <- width and height of the whole spritesheet image
