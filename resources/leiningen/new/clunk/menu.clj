@@ -18,9 +18,8 @@
 (defn sprites
   "The initial list of sprites for this scene"
   [{:keys [window] :as state}]
-  (let [[w h] (u/window-size window)]
-    [(-> (button/button-sprite [(* w 1/2) (* h 1/2)] "Play")
-         (input/add-on-click on-click-play))]))
+  [(-> (button/button-sprite (u/center window) "Play")
+       (input/add-on-click on-click-play))])
 
 (defn draw-menu!
   "Called each frame, draws the current scene to the screen"

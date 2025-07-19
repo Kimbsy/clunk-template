@@ -10,29 +10,28 @@
 (defn sprites
   "The initial list of sprites for this scene"
   [{:keys [window] :as state}]
-  (let [[w h] (u/window-size window)]
-    [(sprite/text-sprite :instructions
-                         [(* w 0.5) (* h 0.2)]
-                         "Press SPACE to change animation")
-     (sprite/animated-sprite
-      :captain ; sprite-group, used for group collision detection
-      [(* w 0.5) (* h 0.6)]
-      [240 360] ; <- width and height of each animation frame
-      :captain-spritesheet ; <- spritesheet image asset key
-      [1680 1440] ; <- width and height of the whole spritesheet image
-      :animations {:none {:frames 1
-                          :y-offset 0
-                          :frame-delay 100}
-                   :idle {:frames 4
-                          :y-offset 1
-                          :frame-delay 15}
-                   :run  {:frames 4
-                          :y-offset 2
-                          :frame-delay 8}
-                   :jump {:frames 7
-                          :y-offset 3
-                          :frame-delay 8}}
-      :current-animation :idle)]))
+  [(sprite/text-sprite :instructions
+                       (u/window-pos window [0.5 0.2])
+                       "Press SPACE to change animation")
+   (sprite/animated-sprite
+    :captain ; sprite-group, used for group collision detection
+    (u/window-pos window [0.5 0.6])
+    [240 360] ; <- width and height of each animation frame
+    :captain-spritesheet ; <- spritesheet image asset key
+    [1680 1440] ; <- width and height of the whole spritesheet image
+    :animations {:none {:frames 1
+                        :y-offset 0
+                        :frame-delay 100}
+                 :idle {:frames 4
+                        :y-offset 1
+                        :frame-delay 15}
+                 :run  {:frames 4
+                        :y-offset 2
+                        :frame-delay 8}
+                 :jump {:frames 7
+                        :y-offset 3
+                        :frame-delay 8}}
+    :current-animation :idle)])
 
 (defn draw-level-01!
   "Called each frame, draws the current scene to the screen"
