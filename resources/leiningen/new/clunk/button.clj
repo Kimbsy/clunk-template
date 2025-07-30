@@ -1,24 +1,34 @@
 (ns {{name}}.sprites.button
   (:require [clunk.shape :as shape]
             [clunk.sprite :as sprite]
-            [clunk.palette :as p]))
+            [clunk.text :as text]))
 
 (def title-text-size 120)
 (def large-text-size 50)
 (def button-teal [0.0 0.5882353 0.654902 1])
 
 (defn draw-button
-  [state {:keys [pos font-size button-size bg-color] :as button}]
-  (shape/fill-rect! (mapv - pos (mapv #(* % 1/2) button-size)) button-size bg-color)
-  (sprite/draw-text-sprite! state button))
+  [state
+   {:keys [content font-size size bg-color offsets]
+    [x0 y0 :as pos] :pos
+    [bw bh :as button-size] :size
+    :as button}]
+  (let [[x y :as offset-pos] (mapv + pos (sprite/pos-offsets button))
+        [tw th :as text-size] [(* (count content) font-size 0.5) font-size]
+        text-pos [(- (+ x (/ bw 2))
+                     (/ tw 4))
+                  (+ (+ y (/ bh 2))
+                     (/ th 4))]]
+    (shape/fill-rect! offset-pos size bg-color)
+    (text/draw-text! state text-pos content)))
 
 (defn button-sprite
   [pos content & {:keys [font-size] :or {font-size large-text-size}}]
-  (sprite/text-sprite :button
-                      pos
-                      content
-                      :font-size font-size
-                      :draw-fn draw-button
-                      :extra {:button-size [200 100] ; override default content-based size
-                              :bg-color button-teal
-                              :debug-color p/red}))
+  (sprite/sprite :button
+                 pos
+                 :size [200 100]
+                 :draw-fn draw-button
+                 :draw-requires-state? true
+                 :extra {:content content
+                         :font-size font-size
+                         :bg-color button-teal}))
