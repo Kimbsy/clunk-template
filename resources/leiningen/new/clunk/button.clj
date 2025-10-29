@@ -19,7 +19,7 @@
                      (/ tw 4))
                   (+ (+ y (/ bh 2))
                      (/ th 4))]]
-    (shape/fill-rect! offset-pos size bg-color)
+    (shape/fill-rect! state offset-pos size bg-color)
     (text/draw-text! state text-pos content)))
 
 (defn button-sprite
