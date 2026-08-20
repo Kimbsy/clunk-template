@@ -16,7 +16,7 @@
            :size [800 600]
            :init-scenes-fn init-scenes
            :current-scene :menu
-           :assets {:image {:captain-spritesheet "resources/img/captain.png"}}}))
+           :assets {:image {:captain-spritesheet "img/captain.png"}}}))
 
 (defn -main
   "Run the game"
